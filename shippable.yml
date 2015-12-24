@@ -1,6 +1,15 @@
 language: ruby
 rvm:
   - 1.9.3
+ # - 1.8.7
+  - 2.0.0
+  - 2.1.5
+  - 2.2.1
+
+services:
+  - mysql
+  
+build_image: drydock/u12rubpls:tip
 
 env:
   global:
@@ -16,5 +25,13 @@ before_script:
   # Resetting the database in before_script makes sure that the database is always empty for consistent test results.
   - mysql -e 'DROP DATABASE IF EXISTS test;'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+
+noifications:
+  email:
+    recipients:
+      varsha@shippable.com
+      test12.ci34@gmail.com
+  irc: "chat.freenode.net#test-irc"
   
-cache: true
+
+
